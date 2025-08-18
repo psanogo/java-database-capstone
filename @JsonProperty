@@ -1,0 +1,6 @@
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+// ... inside the Patient class
+
+@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+private String password;
