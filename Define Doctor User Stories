@@ -1,0 +1,52 @@
+To define the doctor user stories as issues, similar to the patient stories, you would create an issue for each in your chosen project management tool. Here's how they might be structured:
+
+Doctor User Stories (Issues):
+
+Issue 1: Doctor Login
+
+Title: As a doctor, I can log into the portal.
+Description: This allows doctors to securely access their personalized dashboard, manage their appointments, and view patient details.
+Acceptance Criteria (Example):
+Doctor can access a "Login" page with fields for username/email and password.
+Successful login redirects the doctor to their professional dashboard.
+Error messages are displayed for incorrect credentials.
+Issue 2: Doctor Logout
+
+Title: As a doctor, I can log out of the portal.
+Description: This ensures the security of the doctor's account and patient data, especially when using shared or public computers, preventing unauthorized access.
+Acceptance Criteria (Example):
+A "Logout" option is clearly visible when logged in.
+Clicking "Logout" terminates the doctor's session.
+The doctor is redirected to the login page or a public landing page.
+Issue 3: View Appointment Calendar
+
+Title: As a doctor, I can view my appointment calendar.
+Description: This enables doctors to see all their scheduled appointments in an organized, chronological view, helping them manage their time and prepare for their day.
+Acceptance Criteria (Example):
+Doctor can access a calendar view showing all confirmed appointments.
+The calendar displays appointment details (e.g., patient name, time, duration).
+Doctor can navigate between different days/weeks/months.
+Issue 4: Mark Unavailability
+
+Title: As a doctor, I can mark my unavailability.
+Description: This allows doctors to block out time slots when they are not available for appointments (e.g., for vacations, meetings, or personal time), ensuring that patients can only book during actual available slots.
+Acceptance Criteria (Example):
+Doctor can select specific dates and times on their calendar to mark as unavailable.
+Marked unavailable slots are not visible or bookable by patients.
+Doctor can edit or remove unavailability.
+Issue 5: Update Profile Information
+
+Title: As a doctor, I can update my profile with specialization and contact information.
+Description: This ensures that patients have access to the most current and accurate information about the doctor, including their areas of expertise and how to contact them if necessary.
+Acceptance Criteria (Example):
+Doctor can access an "Edit Profile" section.
+Doctor can update fields such as specialization, contact number, and professional bio.
+Changes are saved and reflected on their public-facing profile.
+Issue 6: View Patient Details for Upcoming Appointments
+
+Title: As a doctor, I can view the patient details for upcoming appointments.
+Description: This allows doctors to review relevant patient information (e.g., name, reason for visit, medical history if applicable) before the consultation, enabling them to be better prepared.
+Acceptance Criteria (Example):
+From the appointment calendar, doctor can click on an upcoming appointment to view patient details.
+Patient details displayed include necessary information for consultation (e.g., patient name, contact, reason for visit).
+Access to patient details is restricted to appointments booked with that specific doctor.
