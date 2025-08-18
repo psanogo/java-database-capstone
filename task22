@@ -1,0 +1,36 @@
+Correct Approach
+The task was to execute a SQL stored procedure named GetDoctorWithMostPatientsByMonth and submit its output. This involves two steps:
+
+Writing the correct SQL command to call the procedure.
+Running that command in a SQL client and capturing the result table.
+1. Example SQL Command
+The student correctly identified the SQL needed to call the procedure. For example, to find the doctor with the most patients in October 2023, the command would be:
+
+sql
+CALL GetDoctorWithMostPatientsByMonth(2023, 10);
+Command Breakdown:
+
+CALL: A standard SQL keyword to execute a stored procedure. (Some database systems use EXEC or EXECUTE).
+GetDoctorWithMostPatientsByMonth(...): The name of the stored procedure.
+(2023, 10): The arguments passed to the procedure (in this case, year and month).
+2. Expected Output
+The crucial missing piece was the output from running the command above. The assignment required submitting the result set, which would look like a table with the two specified columns: doctor_id and patients_seen.
+
+A correct submission would have included a result similar to this:
+
+plaintext
++-----------+---------------+
+| doctor_id | patients_seen |
++-----------+---------------+
+|         7 |            58 |
++-----------+---------------+
+(Note: The actual values for doctor_id and patients_seen would depend on the data in the database).
+
+Key Takeaway
+The assignment was not just about writing the correct SQL statement, but about executing it and providing the evidence of its result. The student only completed the first part.
+
+To get the required output, the student should:
+
+Connect to the database using a SQL client (like DBeaver, MySQL Workbench, or a command-line tool).
+Execute the CALL statement in the client's query editor.
+Copy the resulting table from the client's output/results panel and paste it as the submission.
