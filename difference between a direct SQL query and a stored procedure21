@@ -1,0 +1,25 @@
+The core of the misunderstanding lies in the difference between a direct SQL query and a stored procedure.
+
+Direct Query (SELECT): A command like SELECT * FROM Patient LIMIT 5; directly asks the database to retrieve raw data from a specific table (Patient). It's a fundamental but simple operation.
+Stored Procedure (GetDailyAppointmentReportByDoctor): This is a pre-written, named program stored within the database. It can contain complex logic, join multiple tables, and perform calculations before returning a final, formatted result. You don't see the complex code inside; you simply "call" or "execute" it by name, often providing parameters to specify what you need.
+The task required the student to execute the GetDailyAppointmentReportByDoctor stored procedure, which is designed to generate a specific report, not just query a single table.
+
+How to Correctly Execute the Stored Procedure
+To get the correct output, the student needed to use a command like EXEC (for SQL Server) or CALL (for MySQL/PostgreSQL). Since the procedure's name implies it generates a daily report for a specific doctor, it almost certainly requires parameters, such as a doctor's ID and a date.
+
+Here is an example of what the correct SQL command would look like. Let's assume the procedure needs a doctor_id and an appointment_date.
+
+sql
+-- This is an example of how to correctly execute the stored procedure.
+-- The exact parameter names and values would depend on the database schema.
+EXEC GetDailyAppointmentReportByDoctor @DoctorID = 42, @ReportDate = '2024-09-18';
+Example of the Expected Output
+The question asked for the output of the stored procedure. After running the command above, the student should have captured and submitted the resulting table, which might look something like this:
+
+AppointmentTime	PatientID	PatientName	AppointmentReason
+09:00:00	101	Jane Doe	Annual Check-up
+09:30:00	245	John Smith	Follow-up
+10:00:00	187	Emily Jones	Flu Symptoms
+11:15:00	302	Michael Brown	Prescription Refill
+This output is a formatted report, precisely what the stored procedure was designed to create, and fulfills the requirements of the question.
+
