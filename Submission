@@ -1,0 +1,4 @@
+bash
+git add .
+git commit -m "feat: Add CI workflows and user stories"
+git push
