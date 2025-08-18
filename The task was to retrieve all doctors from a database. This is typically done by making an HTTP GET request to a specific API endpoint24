@@ -1,0 +1,41 @@
+Correct Approach
+The task was to retrieve all doctors from a database. This is typically done by making an HTTP GET request to a specific API endpoint.
+
+Example curl Command
+Here is an example of a curl command that sends a GET request to an endpoint designed to return a list of all doctors:
+
+bash
+curl -X GET http://localhost:8080/api/doctors
+Note: The URL http://localhost:8080/api/doctors is an example. The student would need to use the specific URL provided for their project's API.
+
+Command Breakdown
+curl: This is the command-line tool used for transferring data with URLs.
+-X GET: This flag explicitly sets the request method to GET. While curl defaults to GET if no data is sent, specifying it makes the command's intent clear and is good practice.
+http://localhost:8080/api/doctors: This is the API endpoint. A GET request to this URL tells the server, "Please give me the list of all doctors."
+Expected Output
+The command should produce output directly in the terminal, which is what needed to be captured and submitted. The output would typically be a JSON array of doctor objects, similar to this:
+
+json
+ Show full code block 
+[
+  {
+    "id": 1,
+    "name": "Dr. Alice Smith",
+    "specialty": "Cardiology"
+  },
+  {
+    "id": 2,
+    "name": "Dr. Bob Johnson",
+    "specialty": "Neurology"
+  },
+  {
+    "id": 3,
+    "name": "Dr. Carol White",
+    "specialty": "Pediatrics"
+  }
+]
+Key Takeaway
+The core of the issue is the misunderstanding of HTTP methods.
+
+GET: Used to request and retrieve data from a server (e.g., "get me all doctors").
+POST: Used to send data to a server to create a new resource (e.g., "create a new user session by logging in").
