@@ -1,0 +1,53 @@
+To define the patient user stories as issues, you would typically use a project management tool (like GitHub Issues, Jira, Trello, etc.) and create a new issue for each story. Since I cannot interact with external tools, I will present them in a formatted way that represents how they might appear as issues, assuming a basic template with a title and a description.
+
+Patient User Stories (Issues):
+
+Issue 1: View Doctors List (Unauthenticated)
+
+Title: As a patient, I can view a list of doctors without logging in.
+Description: This allows potential patients to explore available doctors and their specialties before deciding to register or sign up for the portal, helping them make an informed choice.
+Acceptance Criteria (Example):
+User can navigate to a "Doctors" or "Find a Doctor" page.
+The page displays a list of doctors with their names and specialties.
+This page is accessible without requiring login credentials.
+Issue 2: Patient Sign-up
+
+Title: As a patient, I can sign up using my email and password.
+Description: This enables new patients to create an account on the portal, which is a prerequisite for booking appointments and managing their personal information.
+Acceptance Criteria (Example):
+User can access a "Sign Up" or "Register" form.
+The form requires a valid email address and a password (with confirmation).
+Upon successful submission, the user's account is created, and they are either automatically logged in or prompted to log in.
+Issue 3: Patient Login
+
+Title: As a patient, I can log into the portal.
+Description: This allows registered patients to access their personalized dashboard, manage their bookings, and interact with other portal features.
+Acceptance Criteria (Example):
+User can access a "Login" page with fields for email/username and password.
+Successful login redirects the user to their patient dashboard.
+Error messages are displayed for incorrect credentials.
+Issue 4: Patient Logout
+
+Title: As a patient, I can log out of the portal.
+Description: This ensures the security of the patient's account, especially when using shared or public computers, preventing unauthorized access to their personal health information and bookings.
+Acceptance Criteria (Example):
+A "Logout" option is clearly visible when logged in.
+Clicking "Logout" terminates the user's session.
+The user is redirected to the login page or a public landing page.
+Issue 5: Book an Appointment
+
+Title: As a patient, I can log in and book an hour-long appointment to consult with a doctor.
+Description: This is the core functionality enabling patients to schedule consultations with doctors listed on the portal.
+Acceptance Criteria (Example):
+Patient can view doctor availability (e.g., calendar or time slots).
+Patient can select an available 60-minute time slot.
+Patient receives confirmation of the booked appointment.
+The appointment is associated with the logged-in patient.
+Issue 6: View Upcoming Appointments
+
+Title: As a patient, I can view my upcoming appointments.
+Description: This allows patients to easily track their scheduled consultations, helping them prepare for appointments and manage their time effectively.
+Acceptance Criteria (Example):
+Logged-in patient can access a dedicated "My Appointments" or "Dashboard" section.
+This section clearly lists all upcoming appointments, including doctor's name, date, and time.
+Appointments are displayed in chronological order.
