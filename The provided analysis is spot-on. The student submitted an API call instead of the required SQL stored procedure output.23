@@ -1,0 +1,35 @@
+Correct Approach
+The task was to execute a SQL stored procedure that calculates the number of patients seen by each doctor for a given year. This requires running a SQL command directly against the database, not making an HTTP request to an API endpoint.
+
+Example SQL Command
+Here is an example of a SQL command that calls a stored procedure named get_patient_count_by_doctor_for_year with the year 2023 as an argument.
+
+sql
+CALL get_patient_count_by_doctor_for_year(2023);
+Command Breakdown:
+
+CALL: This is a standard SQL keyword used to execute a stored procedure. Some SQL dialects might use EXEC or EXECUTE.
+get_patient_count_by_doctor_for_year(...): This is the name of the stored procedure.
+(2023): This is the argument being passed to the procedure, in this case, the year for which to calculate the patient count.
+Expected Output
+After running the command in a SQL client, the output would be a result set (a table) that should be captured and submitted. It would look something like this:
+
+plaintext
+ Show full code block 
++-----------+---------------+
+| doctor_id | patients_seen |
++-----------+---------------+
+|         1 |           152 |
+|         2 |           210 |
+|         3 |            98 |
++-----------+---------------+
+This output directly answers the prompt by providing the doctor_id and the corresponding patients_seen for the specified year, which is what the rubric required.
+
+Key Takeaway
+The student's submission of an API call (GET /api/v1/doctors/patients?year=2023) is a command used to interact with a web server's API, which in turn might call the stored procedure. However, the assignment required interacting directly with the database by executing the SQL stored procedure itself.
+
+To improve, the student should focus on:
+
+Distinguishing between an API endpoint and a database stored procedure.
+Using a SQL client (like DBeaver, MySQL Workbench, or a command-line interface) to connect to the database.
+Learning the correct SQL syntax (CALL or EXEC) to execute stored procedures and capture the resulting table of data.
