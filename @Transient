@@ -1,0 +1,8 @@
+import jakarta.persistence.Transient;
+
+// ... inside the Patient class
+
+@Transient
+public String getSummary() {
+    return "Patient ID: " + id + ", Name: " + name;
+}
