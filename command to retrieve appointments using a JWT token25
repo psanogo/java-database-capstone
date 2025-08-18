@@ -1,0 +1,46 @@
+The Core Issue
+As the analysis correctly points out, the question required both the command and its output. When working with protected API endpoints, it's essential to demonstrate that you can:
+
+Formulate a correct request.
+Include the necessary authentication (in this case, a JWT Bearer token).
+Successfully receive the expected data from the server.
+Submitting only the command completes the first two parts but doesn't provide evidence for the third.
+
+Crafting a Complete Response
+A full-credit answer would include both the command you used and the JSON output it produced.
+
+1. The Command
+
+First, you would show the curl command you wrote. This command correctly targets the /appointments endpoint and includes the Authorization header with a placeholder for the JWT.
+
+bash
+curl -X GET "http://localhost:8080/appointments" -H "Authorization: Bearer <YOUR_JWT_TOKEN>"
+(Note: In a real submission, you would replace <YOUR_JWT_TOKEN> with an actual token you generated for testing.)
+
+2. The Expected Output
+
+Next, you would run that command in your terminal and include the JSON data that the server sends back. This proves the endpoint is working and your token is valid.
+
+Here is an example of what that output might look like:
+
+json
+ Show full code block 
+[
+  {
+    "appointmentId": 101,
+    "patientId": 1,
+    "doctorName": "Dr. Evelyn Reed",
+    "appointmentDate": "2024-08-15",
+    "appointmentTime": "10:00AM",
+    "reason": "Annual Check-up"
+  },
+  {
+    "appointmentId": 102,
+    "patientId": 2,
+    "doctorName": "Dr. Ben Carter",
+    "appointmentDate": "2024-08-16",
+    "appointmentTime": "02:30PM",
+    "reason": "Follow-up"
+  }
+]
+By providing both the command and its resulting output, you fully demonstrate that you can correctly query a protected API endpoint and that the API itself is functioning as expected.
