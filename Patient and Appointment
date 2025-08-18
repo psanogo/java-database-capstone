@@ -1,0 +1,14 @@
+// In the Patient class
+import jakarta.persistence.OneToMany;
+import java.util.Set;
+
+@OneToMany(mappedBy = "patient")
+private Set<Appointment> appointments;
+
+// In the Appointment class
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinColumn;
+
+@ManyToOne
+@JoinColumn(name = "patient_id")
+private Patient patient;
