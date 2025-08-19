@@ -1,0 +1,9 @@
+# First, get a token (in a real scenario, you'd get this from your login endpoint)
+# For this example, let's assume we have a token.
+TOKEN="eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqc21pdGgiLCJpYXQiOjE2N..."
+
+# Now, use the token to make an authenticated request for appointments
+curl -X GET \
+  -H "Accept: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  "http://localhost:8080/api/appointments?patientId=123"
