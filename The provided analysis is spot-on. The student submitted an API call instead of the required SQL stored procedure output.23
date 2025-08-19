@@ -33,3 +33,5 @@ To improve, the student should focus on:
 Distinguishing between an API endpoint and a database stored procedure.
 Using a SQL client (like DBeaver, MySQL Workbench, or a command-line interface) to connect to the database.
 Learning the correct SQL syntax (CALL or EXEC) to execute stored procedures and capture the resulting table of data.
+
+CALL get_patient_count_by_doctor_for_year(2023);
