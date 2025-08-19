@@ -1,45 +1,62 @@
+package com.prescription.backend;
 
-package com.psanogo.javadatabasecapstone.controller;
-
-import com.psanogo.javadatabasecapstone.dto.PrescriptionRequest;
-import com.psanogo.javadatabasecapstone.model.MedicalRecord;
-import com.psanogo.javadatabasecapstone.service.MedicalRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
+import java.net.URI;
+import java.util.List;
+import java.util.Optional;
 
-/**
- * REST controller for managing prescriptions.
- * In this system, a prescription is part of a MedicalRecord. This controller
- * provides a dedicated endpoint for the action of adding a prescription.
- */
 @RestController
-@RequestMapping("/api/v1/prescriptions")
+@RequestMapping("/prescriptions")
 public class PrescriptionController {
 
-    // It's assumed a MedicalRecordService exists to handle the business logic.
-    private final MedicalRecordService medicalRecordService;
+    private final PrescriptionService prescriptionService;
 
     @Autowired
-    public PrescriptionController(MedicalRecordService medicalRecordService) {
-        this.medicalRecordService = medicalRecordService;
+    public PrescriptionController(PrescriptionService prescriptionService) {
+        this.prescriptionService = prescriptionService;
     }
 
-    /**
-     * Creates or updates the prescription for a given medical record.
-     *
-     * @param request The request body containing the medical record ID and prescription text.
-     * @return A ResponseEntity containing the updated MedicalRecord and an HTTP 200 (OK) status.
-     */
+    @GetMapping
+    public ResponseEntity<List<Prescription>> getAllPrescriptions() {
+        List<Prescription> prescriptions = prescriptionService.getAllPrescriptions();
+        return ResponseEntity.ok(prescriptions);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Prescription> getPrescriptionById(@PathVariable Long id) {
+        Optional<Prescription> prescription = prescriptionService.getPrescriptionById(id);
+        return prescription.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
     @PostMapping
-    public ResponseEntity<MedicalRecord> addPrescription(@Valid @RequestBody PrescriptionRequest request) {
-        MedicalRecord updatedRecord = medicalRecordService.addPrescriptionToRecord(request.getMedicalRecordId(), request.getPrescriptionText());
-        return ResponseEntity.ok(updatedRecord);
+    public ResponseEntity<Prescription> createPrescription(@RequestBody Prescription prescription) {
+        Prescription createdPrescription = prescriptionService.createPrescription(prescription);
+        // A REST best practice is to return the location of the newly created resource.
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(createdPrescription.getId()) // Assumes Prescription has a getId() method
+                .toUri();
+        return ResponseEntity.created(location).body(createdPrescription);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Prescription> updatePrescription(@PathVariable Long id, @RequestBody Prescription updatedPrescription) {
+        Optional<Prescription> prescription = prescriptionService.updatePrescription(id, updatedPrescription);
+        return prescription.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePrescription(@PathVariable Long id) {
+        boolean deleted = prescriptionService.deletePrescription(id);
+        return deleted
+                ? ResponseEntity.noContent().build()
+                : ResponseEntity.notFound().build();
     }
 }
 
