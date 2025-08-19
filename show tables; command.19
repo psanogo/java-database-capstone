@@ -28,3 +28,5 @@ Generated code may be subject to license restrictions not shown here. Use code w
 Explanation of the example output:
 
 This output shows a list of tables present within a database named medical_db . The table names Patients , Doctors , Appointments , Services , and MedicalRecords are provided. This example clearly lists more than the required minimum of three tables, thus fulfilling the task's criteria for displaying at least three tables.
+
+SHOW TABLES;
