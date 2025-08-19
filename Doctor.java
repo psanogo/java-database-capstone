@@ -1,101 +1,79 @@
-package com.project.back_end.models;
+package com.psanogo.javadatabasecapstone;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import java.util.Set;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * Represents a Doctor in the clinic system.
- * This class is a JPA entity mapped to the "doctors" table.
+ * Represents a Doctor entity in the Smart Clinic Portal.
+ * This class maps to the 'doctors' table in the database and holds
+ * professional information about a doctor. It is linked to a User account
+ * and a list of associated appointments.
  */
-@Entity // Marks this class as a JPA Entity
-@Table(name = "doctors") // Specifies the database table name
+@Entity
+@Table(name = "doctors")
 public class Doctor {
 
-    @Id // Specifies the primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Configures auto-increment for the ID
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "doctor_id")
     private Long id;
 
-    @NotNull(message = "Doctor name cannot be null")
-    @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
-    private String name;
+    @NotBlank(message = "First name cannot be blank")
+    @Size(max = 100)
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
 
-    @NotNull(message = "Specialty cannot be null")
+    @NotBlank(message = "Last name cannot be blank")
+    @Size(max = 100)
+    @Column(name = "last_name", nullable = false)
+    private String lastName;
+
+    @NotBlank(message = "Specialty cannot be blank")
+    @Size(max = 100)
+    @Column(nullable = false)
     private String specialty;
 
-    @Email(message = "Email should be valid")
-    @NotNull
-    @Column(unique = true) // Ensures email is unique in the database
-    private String email;
-
-    @NotNull
-    @Size(min = 8, message = "Password must be at least 8 characters long")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) // Excludes password from JSON responses for security
-    private String password;
+    @Size(max = 20)
+    @Column(name = "contact_number")
+    private String contactNumber;
 
     // --- Relationships ---
-    // Defines a one-to-many relationship: one doctor can have many appointments.
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Appointment> appointments;
 
-    // --- Helper Method (Not persisted) ---
-    @Transient // Excludes this method's result from being stored in the database
-    public String getDisplayName() {
-        return "Dr. " + this.name;
+    /**
+     * Establishes a one-to-one link with the User entity for authentication.
+     * The 'user_id' column in the 'doctors' table is a foreign key to the 'users' table.
+     */
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false, unique = true)
+    private User user;
+
+    /**
+     * Establishes a one-to-many link with the Appointment entity.
+     * This is the inverse side of the relationship, managed by the 'doctor' field in the Appointment entity.
+     */
+    @OneToMany(
+        mappedBy = "doctor",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    private List<Appointment> appointments = new ArrayList<>();
+
+    // --- Constructors ---
+
+    public Doctor() {
     }
 
     // --- Getters and Setters ---
-    // Note: In a real project, you might use a library like Lombok (@Data, @Getter, @Setter)
-    // to automatically generate these and reduce boilerplate code.
 
-    public Long getId() {
-        return id;
+    // Note: It's good practice to add helper methods for bidirectional relationships
+    public void addAppointment(Appointment appointment) {
+        appointments.add(appointment);
+        appointment.setDoctor(this);
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSpecialty() {
-        return specialty;
-    }
-
-    public void setSpecialty(String specialty) {
-        this.specialty = specialty;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Set<Appointment> getAppointments() {
-        return appointments;
-    }
-
-    public void setAppointments(Set<Appointment> appointments) {
-        this.appointments = appointments;
-    }
+    // (Standard getters and setters for all fields would go here)
 }
+
