@@ -39,3 +39,7 @@ The core of the issue is the misunderstanding of HTTP methods.
 
 GET: Used to request and retrieve data from a server (e.g., "get me all doctors").
 POST: Used to send data to a server to create a new resource (e.g., "create a new user session by logging in").
+
+
+curl -X GET -H "Accept: application/json" http://localhost:8080/api/doctors > doctors.json
+
